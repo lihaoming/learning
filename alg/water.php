@@ -20,7 +20,7 @@ function filter_weak_wall($l_wall)
 function calc_vol($l_all, $wall_a, $wall_b)
 {
 	$vol = 0;
-	$sublist = array_slice($l_all, $wall_a+1, $wall_b-$wall_a-1);
+	$sublist = array_slice($l_all, $wall_a+1, $wall_b - $wall_a - 1);
 	$lower_wall = $l_all[$wall_a];
 	if ($lower_wall > $l_all[$wall_b]) {
 		$lower_wall = $l_all[$wall_b];
@@ -41,7 +41,8 @@ function pull_water($l_all, $l_wall)
 	}
 	foreach ($l_wall as $i => $e) {
 		if ($i == $num_of_wall-1) break;
-		$wall_a = $e; $wall_b = $l_wall[$i+1];
+		$wall_a = $e; 
+		$wall_b = $l_wall[$i+1];
 		$volume += calc_vol($l_all, $wall_a, $wall_b);
 	}
 	return $volume;
@@ -56,12 +57,12 @@ function first_find_wall($list_all)
 			if ($e > $list_all[$i+1]){
 				array_push($list_wall, $i);
 			}
-		}else if ($i == $last_index){
+		} else if ($i == $last_index){
 			if ($e > $list_all[$i-1]){
 				array_push($list_wall, $i);
 			}
-		}else if ($i>0 and $i< $last_index){
-			if ($list_all[$i-1] < $e and $e > $list_all[$i+1]){
+		} else if ($i>0 and $i < $last_index){
+		 	if ($list_all[$i-1] < $e and $e > $list_all[$i+1]){
 				array_push($list_wall, $i);
 			}
 		}
@@ -69,7 +70,7 @@ function first_find_wall($list_all)
 	return $list_wall;
 }
 
-$list_all = array(1,2,3,0,20,3,10,5,6,9);
+$list_all = array(1, 2, 3, 0, 20, 3, 10, 5, 6, 9);
 $list_wall = first_find_wall($list_all);
 $list_wall = filter_weak_wall($list_wall);
 echo pull_water($list_all,$list_wall);
