@@ -20,7 +20,7 @@ function find_largest_square($l_all, $i)
 
 
 
-$list_all = array(1,2,3,0,20,3,10,5,6,9);
+$list_all = array(1, 2, 3, 0, 20, 3, 10, 5, 6, 9);
 $largest_square = 0;
 $leng_list = count($list_all);
 if ($leng_list == 0) {
