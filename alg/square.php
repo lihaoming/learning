@@ -29,7 +29,7 @@ if ($leng_list == 0) {
 if ($leng_list == 1) {
 	echo $list_all[0];
 }
-for ($i=0; $i < $leng_list; $i++) { 
+for ($i = 0; $i < $leng_list; $i++) { 
 	$sub_square = find_largest_square($list_all, $i);
 	if ($sub_square > $largest_square){
 		$largest_square = $sub_square;
