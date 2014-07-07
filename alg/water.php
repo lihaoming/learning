@@ -7,9 +7,9 @@ function filter_weak_wall($l_wall)
 		return $l_wall;
 	}
 	foreach ($l_wall as $i => $e) {
-		if ($i == 0 or i+1 == count($l_wall)){
+		if ($i == 0 or i+1 == count($l_wall)) {
 			array_push($new_wall, $e);
-		}else if ($l_wall[$i-1] < $e or $l_wall[$i+1] < $e){
+		} else if ($l_wall[$i-1] < $e or $l_wall[$i+1] < $e) {
 			array_push($new_wall, $e);
 		}
 	}
@@ -22,7 +22,7 @@ function calc_vol($l_all, $wall_a, $wall_b)
 	$vol = 0;
 	$sublist = array_slice($l_all, $wall_a+1, $wall_b-$wall_a-1);
 	$lower_wall = $l_all[$wall_a];
-	if ($lower_wall > $l_all[$wall_b]){
+	if ($lower_wall > $l_all[$wall_b]) {
 		$lower_wall = $l_all[$wall_b];
 	}	
 	foreach ($sublist as $e) {
@@ -36,7 +36,7 @@ function pull_water($l_all, $l_wall)
 {
 	$num_of_wall = count($l_wall);
 	$volume = 0;
-	if ($num_of_wall < 3){
+	if ($num_of_wall < 3) {
 		return $volume;
 	}
 	foreach ($l_wall as $i => $e) {
