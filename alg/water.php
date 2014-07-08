@@ -32,6 +32,8 @@ function calc_vol($l_all, $wall_a, $wall_b)
 
 }
 
+
+
 function pull_water($l_all, $l_wall)
 {
 	$num_of_wall = count($l_wall);
