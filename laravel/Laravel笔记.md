@@ -1,4 +1,4 @@
-## Composer 的安装
+### Composer 的安装
 
 在有 PHP 环境的情况下，使用如下两个命令之一：
 
@@ -6,7 +6,7 @@
 
 ` php -r "readfile('https://getcomposer.org/installer');" | php `
 
-## 用 Composer 安装 Laravel 
+### 用 Composer 安装 Laravel 
 
 命令行中使用如下命令：
 
@@ -14,7 +14,7 @@
 
 Composer 将自动下载 Laravel 所需相关库，需等较长时间。待下载完成后可复制一份作备用，避免重复此等待过程。
 
-## Laravel 结构（app, views, routes, controllers, models, config 文件夹）
+### Laravel 结构（app, views, routes, controllers, models, config 文件夹）
 
 + app: 所有主程序。
 + app/views: 如何生成具体页面， 可用模板。
@@ -23,7 +23,7 @@ Composer 将自动下载 Laravel 所需相关库，需等较长时间。待下�
 + app/models：ORM.  对数据库里的结构以面向对象方式封装.
 + app/config: 所有设置.
 
-## Routes & Controllers
+### Routes & Controllers
 
 在 Routes.php 文件里写. 如果简单,直接在本文件中写完;如果复杂,写成 controller.
 
@@ -68,7 +68,7 @@ Composer 将自动下载 Laravel 所需相关库，需等较长时间。待下�
 	@endforeach
 ```
 			
-## Models & DB	
+### Models & DB	
 
 使用数据库: `DB::table('tName')->where('colName','colValue')->get()`
 
@@ -84,16 +84,21 @@ class User extends Eloquent{
 + $primaryKey : 该数据表的主键. 默认是 `id`. (可直接给每一个 table 都加一个 AutoIncrement 的 id). 
 + $fillable : 数组. 储存所有可被使用 mass-assignment 方法改动的属性. mass-assignment 即直接传入一个包含所有属性信息的数组的形式.
 + $guarded : 与 fillable 相反, 表示不能被以 mass-assignment 改动的.
-
-可直接使用`TableName::find(pk)` 的方式得到一个主键为 pk 的 元素.
-
-
-
-
++ $timestamps : Boolean值, 是否使用  `updated_at` 和 `created_at` 记录时间.
+使用方法:
++ 可直接使用`TableName::find(pk)` 的方式得到一个主键为 pk 的 元素.
++ `User::where('attrName', '><=' , 'value')` 等同于 where 语句.
++ `User::where(xx)->firstOrFail()`: 直接获取第一个元素,若无,返回404错误.
++ `User->take(10)->get()` : 取前10个.
++ `User::all()` :获取所有.
++ 以上方法获取的均为 list of obj, 需要用 `foreach($users as $user){ echo $user->username; }` 的方式使用.
++ Update. 得到一个 model 以后(比如foreach中的一个$user), 可以直接对本model修改,然后 `$user->save()`,即可.
++ 建表时加入 `updated_at` 和 `created_at`两个属性,在发生相应更新时, 这两个表会自动更新,以记录时间.
++ Insert. `User::Create(array(k1=>v1, k2=>v2))`
 
 [Official Doc -> Eloquent ORM](http://v4.golaravel.com/docs/4.2/eloquent)
 
-## Auth & Security
+### Auth & Security
 
 用 Bcrypt 加密.
 
@@ -102,5 +107,5 @@ Hash: `$password = Hash::make('secret');`
 检查Hash: `Hash::check('secret', $hashedPassword)` return boolean
 
 Authentication: 验证登录的用户是不是本人.
-`Auth::attempt(array('username' => $username, 'password' => $password)))` 即为通过 `username`和`password`进行验证. 当这两个值都正确, 就`return true`.
+`Auth::attempt(array('username' => $username, 'password' => $password)))` 即为通过 `username`和`password`进行验证. 当这两个值都正确, 就`return true`. 传入时是原值,但在数据库里要存为hash值.
 
